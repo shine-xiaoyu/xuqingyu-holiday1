@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xqy.dao.PlanDao">
+
+	<select id="select" resultType="Plan">
+		SELECT p.*,d.name as dname from zhunneng_2019plan  p LEFT JOIN zhunneng_department d 
+		on p.dept_id = d.id 
+		<where>
+			<if test="name!=null and name!=''">
+				p.name like "%" #{name}"%"
+			</if>
+		</where>
+	</select>
+
+	<select id="selectOneById" resultType="Plan">
+		SELECT p.*,d.name as dname from zhunneng_2019plan  p LEFT JOIN zhunneng_department d 
+		on p.dept_id = d.id  WHERE p.id=#{id}
+	</select>
+
+	<update id="update">
+		UPDATE zhunneng_2019plan
+		<trim prefix="set" suffix="WHERE id=#{id}" suffixOverrides=",">
+			<if test="name!=null and name!=''">
+				name=#{name},
+			</if>
+			<if test="amount!=null and amount!=0.0">
+				amount=#{amount},
+			</if>
+			<if test="manager!=null and manager!=''">
+				manager=#{manager},
+			</if>
+			<if test="content!=null and content!=''">
+				content=#{content},
+			</if>
+			<if test="dept_id!=null and dept_id!=0">
+				dept_id=#{dept_id},
+			</if>
+		</trim>
+	</update>
+
+	<delete id="delete">
+		DELETE FROM zhunneng_2019plan WHERE id in(${ids})
+	</delete>
+
+	<insert id="insert">
+		INSERT INTO
+		zhunneng_2019plan(name,amount,manager,content,dept_id)VALUES
+		(#{name},#{amount},#{manager},#{content},#{dept_id})
+	</insert>
+
+</mapper>

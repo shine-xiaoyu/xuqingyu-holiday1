@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xqy.dao.DepartmentDao">
+
+	<select id="select" resultType="Department">
+		SELECT * FROM zhunneng_department
+	</select>
+
+	<select id="selectByName" resultType="Department">
+		SELECT * from zhunneng_department where `name` = ${name}
+	</select>
+
+	<select id="selectOneById" resultType="Department">
+		SELECT * FROM
+		zhunneng_department WHERE id=#{id}
+	</select>
+
+	<update id="update">
+		UPDATE zhunneng_department
+		SET name=#{name}
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM zhunneng_department WHERE id in(${ids})
+	</delete>
+
+	<insert id="insert">
+		INSERT INTO zhunneng_department(name)VALUES
+		(#{name})
+	</insert>
+
+</mapper>

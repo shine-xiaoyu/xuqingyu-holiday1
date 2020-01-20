@@ -17,6 +17,32 @@
 		location.href = "/?pageNum="+page+"&"+$("#form1").serialize();
 	}
 	
+	function deleteAll(ids){
+		var ids = $("[name = 'id']:checked").map(function(){
+			return this.value;
+		}).get().join();
+		alert(ids);
+		$.ajax({
+			type:'post',
+			url:"/deleteAll",
+			data:{ids:ids},
+			success:function(i){
+				if (i) {
+					alert("删除成功！");
+					location.href = "/";
+				}else{
+					alert("删除失败！");				
+				}
+			}
+			
+		})
+	}
+	
+	function checkAll(){
+		$("[name='id']").each(function(){
+			this.checked = "checked";
+		})
+	}
 	
 </script>
 
@@ -25,9 +51,10 @@
 		<input type="text" name="name" value="${plan.name }">
 		<input type="submit" value="查询">
 	</form>
-
+	<button onclick="deleteAll()">批量删除</button>
 	<table>
 		<tr>
+			<td><input type="checkbox" name="ids"  onclick="checkAll()"> </td>
 			<td>编号</td>
 			<td>项目名称</td>
 			<td>投资资金</td>
@@ -37,6 +64,7 @@
 		</tr>
 		<c:forEach items="${info.list }" var="i">
 			<tr>
+				<td><input type="checkbox" name="id" value="${i.id }"></td>
 				<td>${i.id }</td>
 				<td>${i.name }</td>
 				<td>${i.amount }</td>

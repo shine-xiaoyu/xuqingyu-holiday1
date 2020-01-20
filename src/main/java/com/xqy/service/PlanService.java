@@ -14,4 +14,5 @@ public interface PlanService {
 	boolean update(Plan plan);
 
 	int delete(Integer id);
+	boolean deleteAll(String ids);
 }

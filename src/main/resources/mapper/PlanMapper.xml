@@ -43,11 +43,18 @@
 	<delete id="delete">
 		DELETE FROM zhunneng_2019plan WHERE id in(${ids})
 	</delete>
+	
+	<delete id="deleteAll">
+		DELETE FROM zhunneng_2019plan WHERE id in(${ids})
+	</delete>
 
 	<insert id="insert">
 		INSERT INTO
 		zhunneng_2019plan(name,amount,manager,content,dept_id)VALUES
 		(#{name},#{amount},#{manager},#{content},#{dept_id})
 	</insert>
+	
+	
+	
 
 </mapper>

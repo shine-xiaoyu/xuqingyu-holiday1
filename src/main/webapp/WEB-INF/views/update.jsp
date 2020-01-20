@@ -30,7 +30,7 @@
 			type:"post",
 			success:function(i){
 				if (i) {
-					location.href = "/list";
+					location.href = "/";
 				}
 				else{
 					location.href = "/update";

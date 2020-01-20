@@ -25,7 +25,7 @@ public class PlanController {
 	@Resource
 	private DepartmentService departmentService;
 	
-	@RequestMapping("/list")
+	@RequestMapping("/")
 	public String select (Model m ,Plan plan,
 			@RequestParam(defaultValue = "1")Integer pageNum,
 			@RequestParam(defaultValue = "2")Integer pageSize) {
@@ -66,6 +66,13 @@ public class PlanController {
 		
 		
 		return planService.update(plan);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteAll")
+	public boolean deleteAll(String ids) {
+		
+		return planService.deleteAll(ids);
 	}
 	
 	

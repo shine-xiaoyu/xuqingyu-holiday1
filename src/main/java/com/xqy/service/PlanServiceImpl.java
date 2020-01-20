@@ -44,4 +44,9 @@ public class PlanServiceImpl implements PlanService {
 		return planDao.delete(id);
 	}
 
+	@Override
+	public boolean deleteAll(String ids) {
+		return planDao.deleteAll(ids)>0;
+	}
+
 }
